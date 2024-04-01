@@ -13,9 +13,9 @@ namespace Api1.Models
     {
 
         public int ApartmentId { get; set; }
-        public string ApartmentName { get; set; }
-        public string ApartmentDescription { get; set; }
-        public string ApartmentLocation { get; set; }
+        public string  ApartmentName { get; set; }
+        public string  ApartmentDescription { get; set; }
+        public string  ApartmentLocation { get; set; }
     }
 
         public class ApartmentsOwnerDto

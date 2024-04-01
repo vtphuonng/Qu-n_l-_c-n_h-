@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Data.Common;
 
 namespace Api1.Models
 {
@@ -81,11 +83,34 @@ namespace Api1.Models
                 throw new InvalidOperationException("Resident not found");
             }
 
-            tgapartment.ApartmentId = modifiedApartment.ApartmentId;
-            tgapartment.ApartmentName = modifiedApartment.ApartmentName;
-            tgapartment.ApartmentDescription = modifiedApartment.ApartmentDescription;
-            tgapartment.ApartmentLocation = modifiedApartment.ApartmentLocation;
+            var entry = _context.Entry(tgapartment);
+            await entry.ReloadAsync();
 
+            var props = typeof(ApartmentsInforDto).GetProperties();
+            //var tgapartment_props = typeof(ApartmentsInfor).GetProperties();
+            foreach (var prop in props)
+            {
+                var new_value = prop.GetValue(modifiedApartment);
+                if (new_value != null)
+                {
+                    var tgapartment_prop = typeof(ApartmentsInfor).GetProperty(prop.Name);
+                    if (tgapartment_prop != null)
+                    {
+                        var set_value = new_value.ToString();
+                        if (!string.IsNullOrEmpty(set_value)){
+                            tgapartment_prop.SetValue(tgapartment, new_value);
+                        }
+                     
+                    }
+                }
+            }
+
+            //tgapartment.ApartmentId = (int)modifiedApartment.ApartmentId;
+            //tgapartment.ApartmentName = modifiedApartment.ApartmentName;
+            //tgapartment.ApartmentDescription = modifiedApartment.ApartmentDescription;
+            //tgapartment.ApartmentLocation = modifiedApartment.ApartmentLocation;
+
+            _context.Apartments.Update(tgapartment);
             await _context.SaveChangesAsync();
             return tgapartment;
         }

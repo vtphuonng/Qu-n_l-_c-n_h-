@@ -1,8 +1,4 @@
-﻿using Api1.Controllers;
-using Microsoft.EntityFrameworkCore;
-using Api1.Models;
-using System.Collections.Generic;
-using System.Reflection.Emit;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Api1.Models
 {
