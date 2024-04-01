@@ -69,5 +69,10 @@ namespace Api1.Models
             await _context.SaveChangesAsync();
             return tgrelation;
         }
+
+        async public async Task<ApartmentsOwner> SearchPropertyOwners(PropertyOwnerDto propertyOwner)
+        {
+            tgrelationship = _context.ApartmentsOwners.FirstOrDefaultAsync(tgr => tgr.OwnerId == propertyOwner.OwnerId);
+        }
     }
 }

@@ -31,5 +31,7 @@
         Task<ApartmentsOwner> RemoveRelation(int id);
 
         Task<ApartmentsOwner> ModifyRelation(ApartmentsOwnerDto modifiedResident);
+        Task<ApartmentsOwner> SearchPropertyOwners(PropertyOwnerDto propertyOwner);
     }
+
 }

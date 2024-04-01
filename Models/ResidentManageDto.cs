@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Api1.Models
+﻿namespace Api1.Models
 {
     public class ResidentDto
     {
@@ -18,7 +16,7 @@ namespace Api1.Models
         public string  ApartmentLocation { get; set; }
     }
 
-        public class ApartmentsOwnerDto
+    public class ApartmentsOwnerDto
     {
 
         public int? Id { get; set; }
@@ -26,5 +24,16 @@ namespace Api1.Models
         public int? UpdateOwnerId { get; set; }
 
         public int? UpdateApartmentId { get; set; }
+    }
+
+    public class PropertyOwnerDto
+    {
+        public int OwnerId { get; set; }
+        public string OwnerName { get; set; }
+        public string OwnerPhonenumber { get; set; }
+        public List<PropertyOwnerDto> PropertyOwnerList
+        {
+            get; set;
+        }
     }
 }
